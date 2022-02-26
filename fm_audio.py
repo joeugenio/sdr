@@ -53,7 +53,8 @@ b_pt = signal.firwin(NTAPS, cutoff_pt, fs=FS, pass_zero='bandpass')
 fil_lr = signal.lfilter(b_pt, 1, deemp)  # get L-R filtered
 
 # AM coherent demodulation of L-R audio
-demod_lr = fil_lr*pt*pt # shift by 38kHz
+# cos(2x) = 2cos^2(x)-1
+demod_lr = fil_lr*(2*pt**2 - 1) # shift by 38kHz
 
 # decimate filter to get stereo L-R audio 
 st_lr = signal.decimate(demod_lr, ADF, ftype='fir')
