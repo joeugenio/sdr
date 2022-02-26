@@ -48,9 +48,9 @@ pt = signal.lfilter(b_pt, 1, demod) # get pilot tone
 pt /= pt.std()             # normalizes
 
 # bandpass filtering for the 38kHz L-R stereo audio
-cutoff_pt = [22.9e3, 53.1e3]          # filter cut off
-b_pt = signal.firwin(NTAPS, cutoff_pt, fs=FS, pass_zero='bandpass')
-fil_lr = signal.lfilter(b_pt, 1, deemp)  # get L-R filtered
+cutoff_lr = [22.9e3, 53.1e3]          # filter cut off
+b_lr = signal.firwin(NTAPS, cutoff_lr, fs=FS, pass_zero='bandpass')
+fil_lr = signal.lfilter(b_lr, 1, deemp)  # get L-R filtered
 
 # AM coherent demodulation of L-R audio
 # cos(2x) = 2cos^2(x)-1
